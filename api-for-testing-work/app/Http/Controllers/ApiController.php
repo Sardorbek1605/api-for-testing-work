@@ -13,7 +13,7 @@ class ApiController extends Controller
 {
     public function products(Request $request){
         if($request->has('category')){
-            $products = Products::where('category_id', $request->category);
+            $products = Products::where('category_id', $request->category)->get();
         }else{
             $products = Products::all();
         }
