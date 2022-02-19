@@ -60,7 +60,7 @@ class ApiController extends Controller
     }
 
     public function search(Request $request){
-        $products = Products::where([['name', 'like', "%$request->name%"], ['price', '=', "$request->price"]])->get();
+        $products = Products::where('name', 'like', "%$request->name%")->orWhere('price', '=', $request->price)->get();
         return response()->json([
            'products' => $products
         ]);

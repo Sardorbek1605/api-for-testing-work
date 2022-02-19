@@ -33,4 +33,5 @@ Route::group(['middleware' => ['api', 'jwt.verify']], function () {
     Route::get('products', [ApiController::class, 'products']);
     Route::post('save-card', [ApiController::class, 'save_to_card']);
     Route::post('pay', [ApiController::class, 'pay']);
+    Route::post('search', [ApiController::class, 'search']);
 });
