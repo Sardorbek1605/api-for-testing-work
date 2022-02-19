@@ -59,4 +59,11 @@ class ApiController extends Controller
         ]);
     }
 
+    public function search(Request $request){
+        $products = Products::where([['name', 'like', "%$request->name%"], ['price', '=', "$request->price"]])->get();
+        return response()->json([
+           'products' => $products
+        ]);
+    }
+
 }
