@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
+    /**
+     * @OA\Get(
+     *      path="/api/products",
+     *      operationId="getUserList",
+     *      tags={"Products"},
+     * @OA\Response(
+     *      response=400,
+     *      description="Bad Request"
+     *   ),
+     * @OA\Response(
+     *      response=404,
+     *      description="not found"
+     *   ),
+     *  )
+     */
     public function products(Request $request){
         if($request->has('category')){
             $products = Products::where('category_id', $request->category)->get();
@@ -47,7 +62,6 @@ class ApiController extends Controller
             $payment->product_id = $product["product_id"];
             $payment->user_id = \auth()->user()->id;
             $payment->count = $product["count"];
-            $payment->total_price = $product["price"];
             $payment->total_price = $product["price"];
             $payment->type_payment = $product["type_payment"];
             $payment->save();
